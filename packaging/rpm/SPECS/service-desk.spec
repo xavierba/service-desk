@@ -72,9 +72,11 @@ cp -a          vendor/*       %{buildroot}/%{sd_destdir}/vendor
 install -m 644 %{SOURCE1}     %{buildroot}/etc/httpd/conf.d/service-desk.conf
 
 # Adapt Smarty paths
-sed -i 's:/usr/share/php/smarty3:/usr/share/php/Smarty:' %{buildroot}%{sd_destdir}/conf/config.inc.php
-sed -i 's:^#$smarty_cache_dir.*:$smarty_cache_dir = "'%{sd_cachedir}/cache'";:' %{buildroot}%{sd_destdir}/conf/config.inc.php
-sed -i 's:^#$smarty_compile_dir.*:$smarty_compile_dir = "'%{sd_cachedir}/templates_c'";:' %{buildroot}%{sd_destdir}/conf/config.inc.php
+sed -i \
+  -e 's:/usr/share/php/smarty3:/usr/share/php/Smarty:' \
+  -e 's:^#$smarty_cache_dir.*:$smarty_cache_dir = "'%{sd_cachedir}/cache'";:' \
+  -e 's:^#$smarty_compile_dir.*:$smarty_compile_dir = "'%{sd_cachedir}/templates_c'";:' \
+  %{buildroot}%{sd_destdir}/conf/config.inc.php
 
 %post
 #=================================================
