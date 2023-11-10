@@ -10,32 +10,25 @@
 # Copyright (C) 2020 LTB-project
 #=================================================
 
-#=================================================
-# Variables
-#=================================================
-%define sd_name      service-desk
-%define sd_realname  ltb-project-%{name}
-%define sd_version   0.5.1
 %define sd_destdir   /usr/share/%{name}
 %define sd_cachedir  /var/cache/%{name}
 
-#=================================================
-# Header
-#=================================================
-Summary: LDAP Tool Box Service Desk web interface
-Name: %{sd_name}
-Version: %{sd_version}
-Release: 1%{?dist}
-License: GPL
+Name:      service-desk
+Version:   0.5.1
+Release:   1%{?dist}
+Summary:   LDAP Tool Box Service Desk web interface
+URL:       https://ltb-project.org
+License:   GPL
+
 BuildArch: noarch
 
-URL: https://ltb-project.org
+Source0:   %{name}-%{version}.tar.gz
+Source1:   service-desk-apache.conf
 
-Source: %{sd_realname}-%{sd_version}.tar.gz
-Source1: service-desk-apache.conf
+Requires:  coreutils
+Requires:  php
+Requires:  php-ldap
 
-Requires(pre,preun): coreutils
-Requires: php, php-ldap
 
 %description
 Service Desk is a PHP application that allows administrators to check, unlock and reset user passwords in an LDAP directory.
@@ -45,7 +38,7 @@ Service Desk is provided by LDAP Tool Box project: https://ltb-project.org
 # Source preparation
 #=================================================
 %prep
-%setup -n %{sd_realname}-%{sd_version}
+%setup -q
 
 #=================================================
 # Installation
