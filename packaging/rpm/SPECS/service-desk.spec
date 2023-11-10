@@ -113,6 +113,7 @@ fi
 - gh#96: Add source IP in audit
 - gh#98: Add IP in audit
 - gh#99: Provide result codes for lock/unlock account actions
+
 * Mon Apr 24 2023 - Clement Oudot <clem@ltb-project.org> - 0.5-1
 - gh#45: Do not enable lockout feature if no ppolicy associated to account or ppolicy has pwdLockout value to FALSE
 - gh#47: Don't lock account until a valid ppolicy with pwdLockout=TRUE is associated (#45)
@@ -143,6 +144,7 @@ fi
 - gh#88: Force line break
 - gh#89: Address displayer
 - gh#90: Prehook feature
+
 * Mon May 17 2021 - Clement Oudot <clem@ltb-project.org> - 0.4-1
 - gh#19: Display expiration date
 - gh#20: fix(undefined)
@@ -158,16 +160,20 @@ fi
 - gh#40: Dashboard will expire passwords
 - gh#42: Dashboard idle accounts
 - gh#44: Multi tenancy
+
 * Mon Jun 29 2020 - Clement Oudot <clem@ltb-project.org> - 0.3-1
 - Bug #15: Handle the case where pwdAccountLockedTime is set but pwdLockoutDuration is not set or is equal to 0
 - Feature #16: Possibility to lock an account
 - Feature #17: Allow the Smarty path to be set in conf.inc.local.php
+
 * Tue May 19 2020 - Clement Oudot <clem@ltb-project.org> - 0.2-2
 - Bug #13: Syntax error in resetpassword.php
+
 * Fri May 15 2020 - Clement Oudot <clem@ltb-project.org> - 0.2-1
 - Bug #5: Password is marked as expired if policy do not set pwdMaxAge
 - Bug #7: The pwdReset radio button is not checked by default
 - Feature #9: PostHook
 - Feature #10: Viewer for quota attributes
+
 * Mon Mar 30 2020 - Clement Oudot <clem@ltb-project.org> - 0.1-1
 - First release
