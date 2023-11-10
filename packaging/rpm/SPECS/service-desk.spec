@@ -83,7 +83,6 @@ sed -i \
 # Files
 #=================================================
 %files
-%defattr(-, root, root, 0755)
 %config(noreplace) %{sd_destdir}/conf/config.inc.php
 %config(noreplace) /etc/httpd/conf.d/service-desk.conf
 %{sd_destdir}
