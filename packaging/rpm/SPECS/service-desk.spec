@@ -31,7 +31,8 @@ Requires:  php-ldap
 
 
 %description
-Service Desk is a PHP application that allows administrators to check, unlock and reset user passwords in an LDAP directory.
+Service Desk is a PHP application that allows administrators to check, unlock
+and reset user passwords in an LDAP directory.
 Service Desk is provided by LDAP Tool Box project: https://ltb-project.org
 
 #=================================================
