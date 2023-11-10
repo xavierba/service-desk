@@ -24,12 +24,16 @@ BuildArch: noarch
 
 Source0:   https://github.com/ltb-project/%{name}/archive/v%{version}/%{name}-%{version}.tar.gz
 Source1:   service-desk-apache.conf
+Source2:   service-desk-vendor_autoload
 
 %{?fedora:BuildRequires: phpunit9}
 Requires(pre):  httpd
 Requires:  coreutils
 Requires:  php
 Requires:  php-ldap
+Requires:  php-Smarty
+Requires:  php-ltb-project-ldap
+Requires:  php-phpmailer6
 
 Provides:  bundled(js-bootstrap) = 3.4.1
 Provides:  bundled(js-datatables) = 1.10.16
@@ -69,7 +73,10 @@ cp -a          htdocs/vendor  %{buildroot}/%{sd_destdir}/htdocs
 install -m 644 lang/*         %{buildroot}/%{sd_destdir}/lang
 install -m 644 lib/*          %{buildroot}/%{sd_destdir}/lib
 install -m 644 templates/*    %{buildroot}/%{sd_destdir}/templates
-cp -a          vendor/*       %{buildroot}/%{sd_destdir}/vendor
+
+install -p -m 0644 %{SOURCE2} \
+  %{buildroot}%{_datadir}/%{name}/vendor/autoload.php
+
 ## Apache configuration
 install -m 644 %{SOURCE1} \
   %{buildroot}/%{_sysconfdir}/httpd/conf.d/service-desk.conf
