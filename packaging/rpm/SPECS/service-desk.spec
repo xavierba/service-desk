@@ -25,6 +25,7 @@ BuildArch: noarch
 Source0:   %{name}-%{version}.tar.gz
 Source1:   service-desk-apache.conf
 
+Requires(pre):  httpd
 Requires:  coreutils
 Requires:  php
 Requires:  php-ldap
@@ -78,15 +79,6 @@ sed -i \
   -e 's:^#$smarty_compile_dir.*:$smarty_compile_dir = "'%{sd_cachedir}/templates_c'";:' \
   %{buildroot}%{sd_destdir}/conf/config.inc.php
 
-%post
-#=================================================
-# Post Installation
-#=================================================
-
-# Change owner
-/bin/chown apache:apache %{sd_cachedir}/cache
-/bin/chown apache:apache %{sd_cachedir}/templates_c
-
 #=================================================
 # Files
 #=================================================
@@ -95,7 +87,9 @@ sed -i \
 %config(noreplace) %{sd_destdir}/conf/config.inc.php
 %config(noreplace) /etc/httpd/conf.d/service-desk.conf
 %{sd_destdir}
-%{sd_cachedir}
+%dir %{sd_cachedir}
+%attr(-,apache,apache) %{sd_cachedir}/cache
+%attr(-,apache,apache) %{sd_cachedir}/templates_c
 
 #=================================================
 # Changelog
