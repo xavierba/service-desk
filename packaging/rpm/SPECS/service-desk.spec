@@ -30,6 +30,11 @@ Requires:  coreutils
 Requires:  php
 Requires:  php-ldap
 
+Provides:  bundled(js-bootstrap) = 3.4.1
+Provides:  bundled(js-datatables) = 1.10.16
+Provides:  bundled(js-jquery) = 1.10.2
+Provides:  bundled(fontawesome-fonts) = 4.7.0
+
 
 %description
 Service Desk is a PHP application that allows administrators to check, unlock
