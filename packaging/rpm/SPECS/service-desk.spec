@@ -29,7 +29,7 @@ Source2:   service-desk-vendor_autoload
 %{?fedora:BuildRequires: phpunit9}
 Requires(pre):  httpd
 Requires:  coreutils
-Requires:  php
+Requires:  php(language) >= 5.6
 Requires:  php-ldap
 Requires:  php-Smarty
 Requires:  php-ltb-project-ldap
