@@ -36,15 +36,11 @@ Service Desk is a PHP application that allows administrators to check, unlock
 and reset user passwords in an LDAP directory.
 Service Desk is provided by LDAP Tool Box project: https://ltb-project.org
 
-#=================================================
-# Source preparation
-#=================================================
+
 %prep
 %setup -q
 
-#=================================================
-# Installation
-#=================================================
+
 %install
 # Create directories
 mkdir -p %{buildroot}/%{sd_destdir}
@@ -97,9 +93,7 @@ if [ -f "%{sd_destdir}/conf/config.inc.local.php" ]; then
       %{_sysconfdir}/%{name}/config.inc.local.php
 fi
 
-#=================================================
-# Files
-#=================================================
+
 %files
 %license LICENSE
 %doc AUTHORS README.md
@@ -110,9 +104,7 @@ fi
 %attr(-,apache,apache) %{sd_cachedir}/cache
 %attr(-,apache,apache) %{sd_cachedir}/templates_c
 
-#=================================================
-# Changelog
-#=================================================
+
 %changelog
 * Wed May 17 2023 - Clement Oudot <clem@ltb-project.org> - 0.5.1-1
 - gh#92: Message override broken in 0.5
