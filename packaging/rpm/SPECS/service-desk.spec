@@ -10,8 +10,8 @@
 # Copyright (C) 2020 LTB-project
 #=================================================
 
-%global sd_destdir   /usr/share/%{name}
-%global sd_cachedir  /var/cache/%{name}
+%global sd_destdir   %{_datadir}/%{name}
+%global sd_cachedir  %{_localstatedir}/cache/%{name}
 
 Name:      service-desk
 Version:   0.5.1
@@ -56,7 +56,7 @@ mkdir -p %{buildroot}/%{sd_destdir}/lib
 mkdir -p %{buildroot}/%{sd_destdir}/templates
 mkdir -p %{buildroot}/%{sd_cachedir}/templates_c
 mkdir -p %{buildroot}/%{sd_destdir}/vendor
-mkdir -p %{buildroot}/etc/httpd/conf.d
+mkdir -p %{buildroot}/%{_sysconfdir}/httpd/conf.d
 
 # Copy files
 ## Program
@@ -69,7 +69,8 @@ install -m 644 lib/*          %{buildroot}/%{sd_destdir}/lib
 install -m 644 templates/*    %{buildroot}/%{sd_destdir}/templates
 cp -a          vendor/*       %{buildroot}/%{sd_destdir}/vendor
 ## Apache configuration
-install -m 644 %{SOURCE1}     %{buildroot}/etc/httpd/conf.d/service-desk.conf
+install -m 644 %{SOURCE1} \
+  %{buildroot}/%{_sysconfdir}/httpd/conf.d/service-desk.conf
 
 # Adapt Smarty paths
 sed -i \
@@ -103,7 +104,7 @@ fi
 %license LICENSE
 %doc AUTHORS README.md
 %config(noreplace) %{_sysconfdir}/%{name}/config.inc.php
-%config(noreplace) /etc/httpd/conf.d/service-desk.conf
+%config(noreplace) %{_sysconfdir}/httpd/conf.d/service-desk.conf
 %{sd_destdir}
 %dir %{sd_cachedir}
 %attr(-,apache,apache) %{sd_cachedir}/cache
