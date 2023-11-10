@@ -22,7 +22,7 @@ License:   GPL-3.0-only
 
 BuildArch: noarch
 
-Source0:   %{name}-%{version}.tar.gz
+Source0:   https://github.com/ltb-project/%{name}/archive/v%{version}/%{name}-%{version}.tar.gz
 Source1:   service-desk-apache.conf
 
 Requires(pre):  httpd
