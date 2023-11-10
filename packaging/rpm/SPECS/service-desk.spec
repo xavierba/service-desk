@@ -18,7 +18,7 @@ Version:   0.5.1
 Release:   1%{?dist}
 Summary:   LDAP Tool Box Service Desk web interface
 URL:       https://ltb-project.org
-License:   GPL
+License:   GPL-3.0-only
 
 BuildArch: noarch
 
@@ -83,6 +83,7 @@ sed -i \
 # Files
 #=================================================
 %files
+%license LICENSE
 %config(noreplace) %{sd_destdir}/conf/config.inc.php
 %config(noreplace) /etc/httpd/conf.d/service-desk.conf
 %{sd_destdir}
