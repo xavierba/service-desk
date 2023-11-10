@@ -29,12 +29,10 @@ Release: 1%{?dist}
 License: GPL
 BuildArch: noarch
 
-Group: Applications/Web
 URL: https://ltb-project.org
 
 Source: %{sd_realname}-%{sd_version}.tar.gz
 Source1: service-desk-apache.conf
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Requires(pre,preun): coreutils
 Requires: php, php-ldap
