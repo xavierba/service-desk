@@ -10,8 +10,8 @@
 # Copyright (C) 2020 LTB-project
 #=================================================
 
-%define sd_destdir   /usr/share/%{name}
-%define sd_cachedir  /var/cache/%{name}
+%global sd_destdir   /usr/share/%{name}
+%global sd_cachedir  /var/cache/%{name}
 
 Name:      service-desk
 Version:   0.5.1
