@@ -84,6 +84,7 @@ sed -i \
 #=================================================
 %files
 %license LICENSE
+%doc AUTHORS README.md
 %config(noreplace) %{sd_destdir}/conf/config.inc.php
 %config(noreplace) /etc/httpd/conf.d/service-desk.conf
 %{sd_destdir}
