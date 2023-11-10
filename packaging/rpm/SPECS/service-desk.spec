@@ -60,7 +60,6 @@ mkdir -p %{buildroot}/etc/httpd/conf.d
 
 # Copy files
 ## Program
-install -m 644 conf/*         %{buildroot}/%{sd_destdir}/conf
 install -m 644 htdocs/*.php   %{buildroot}/%{sd_destdir}/htdocs
 cp -a          htdocs/css     %{buildroot}/%{sd_destdir}/htdocs
 cp -a          htdocs/images  %{buildroot}/%{sd_destdir}/htdocs
@@ -77,7 +76,25 @@ sed -i \
   -e 's:/usr/share/php/smarty3:/usr/share/php/Smarty:' \
   -e 's:^#$smarty_cache_dir.*:$smarty_cache_dir = "'%{sd_cachedir}/cache'";:' \
   -e 's:^#$smarty_compile_dir.*:$smarty_compile_dir = "'%{sd_cachedir}/templates_c'";:' \
+  conf/config.inc.php
+
+# Move conf file to %%_sysconfdir
+mkdir -p %{buildroot}/%{_sysconfdir}/%{name}
+install -m 644 conf/config.inc.php \
+  %{buildroot}/%{_sysconfdir}/%{name}/
+ln -s %{_sysconfdir}/%{name}/config.inc.php \
   %{buildroot}%{sd_destdir}/conf/config.inc.php
+
+
+%post
+if [ -f "%{sd_destdir}/conf/config.inc.php" ]; then
+    mv %{sd_destdir}/conf/config.inc.php %{_sysconfdir}/%{name}/config.inc.php
+fi
+# Move configuration override too
+if [ -f "%{sd_destdir}/conf/config.inc.local.php" ]; then
+    mv %{sd_destdir}/conf/config.inc.local.php \
+      %{_sysconfdir}/%{name}/config.inc.local.php
+fi
 
 #=================================================
 # Files
@@ -85,7 +102,7 @@ sed -i \
 %files
 %license LICENSE
 %doc AUTHORS README.md
-%config(noreplace) %{sd_destdir}/conf/config.inc.php
+%config(noreplace) %{_sysconfdir}/%{name}/config.inc.php
 %config(noreplace) /etc/httpd/conf.d/service-desk.conf
 %{sd_destdir}
 %dir %{sd_cachedir}
