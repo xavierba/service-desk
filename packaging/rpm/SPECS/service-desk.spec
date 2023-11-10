@@ -25,6 +25,7 @@ BuildArch: noarch
 Source0:   https://github.com/ltb-project/%{name}/archive/v%{version}/%{name}-%{version}.tar.gz
 Source1:   service-desk-apache.conf
 
+%{?fedora:BuildRequires: phpunit9}
 Requires(pre):  httpd
 Requires:  coreutils
 Requires:  php
@@ -86,6 +87,10 @@ install -m 644 conf/config.inc.php \
   %{buildroot}/%{_sysconfdir}/%{name}/
 ln -s %{_sysconfdir}/%{name}/config.inc.php \
   %{buildroot}%{sd_destdir}/conf/config.inc.php
+
+
+%check
+%{?fedora:phpunit9 --verbose --testdox --do-not-cache-result tests}
 
 
 %post
