@@ -51,8 +51,6 @@ Service Desk is provided by LDAP Tool Box project: https://ltb-project.org
 # Installation
 #=================================================
 %install
-rm -rf %{buildroot}
-
 # Create directories
 mkdir -p %{buildroot}/%{sd_destdir}
 mkdir -p %{buildroot}/%{sd_cachedir}/cache
@@ -92,12 +90,6 @@ sed -i 's:^#$smarty_compile_dir.*:$smarty_compile_dir = "'%{sd_cachedir}/templat
 # Change owner
 /bin/chown apache:apache %{sd_cachedir}/cache
 /bin/chown apache:apache %{sd_cachedir}/templates_c
-
-#=================================================
-# Cleaning
-#=================================================
-%clean
-rm -rf %{buildroot}
 
 #=================================================
 # Files
