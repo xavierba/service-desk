@@ -25,6 +25,7 @@ BuildArch: noarch
 Source0:   https://github.com/ltb-project/%{name}/archive/v%{version}/%{name}-%{version}.tar.gz
 Source1:   service-desk-apache.conf
 Source2:   service-desk-vendor_autoload
+Source3:   service-desk-config_inc_local
 
 %{?fedora:BuildRequires: phpunit9}
 Requires(pre):  httpd
@@ -94,6 +95,8 @@ install -m 644 conf/config.inc.php \
   %{buildroot}/%{_sysconfdir}/%{name}/
 ln -s %{_sysconfdir}/%{name}/config.inc.php \
   %{buildroot}%{sd_destdir}/conf/config.inc.php
+install -m 644 %{SOURCE3} \
+  %{buildroot}/%{_sysconfdir}/%{name}/config.inc.local.php
 
 
 %check
@@ -115,6 +118,7 @@ fi
 %license LICENSE
 %doc AUTHORS README.md
 %config(noreplace) %{_sysconfdir}/%{name}/config.inc.php
+%config(noreplace) %{_sysconfdir}/%{name}/config.inc.local.php
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/service-desk.conf
 %{sd_destdir}
 %dir %{sd_cachedir}
