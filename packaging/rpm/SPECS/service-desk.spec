@@ -55,15 +55,14 @@ Service Desk is provided by LDAP Tool Box project: https://ltb-project.org
 %install
 # Create directories
 mkdir -p %{buildroot}/%{sd_destdir}
-mkdir -p %{buildroot}/%{sd_cachedir}/cache
 mkdir -p %{buildroot}/%{sd_destdir}/conf
 mkdir -p %{buildroot}/%{sd_destdir}/htdocs
 mkdir -p %{buildroot}/%{sd_destdir}/lang
 mkdir -p %{buildroot}/%{sd_destdir}/lib
 mkdir -p %{buildroot}/%{sd_destdir}/templates
-mkdir -p %{buildroot}/%{sd_cachedir}/templates_c
 mkdir -p %{buildroot}/%{sd_destdir}/vendor
-mkdir -p %{buildroot}/%{_sysconfdir}/httpd/conf.d
+mkdir -p %{buildroot}/%{sd_cachedir}/cache
+mkdir -p %{buildroot}/%{sd_cachedir}/templates_c
 
 # Copy files
 ## Program
@@ -79,6 +78,7 @@ install -p -m 0644 %{SOURCE2} \
   %{buildroot}%{_datadir}/%{name}/vendor/autoload.php
 
 ## Apache configuration
+mkdir -p %{buildroot}/%{_sysconfdir}/httpd/conf.d
 install -m 644 %{SOURCE1} \
   %{buildroot}/%{_sysconfdir}/httpd/conf.d/service-desk.conf
 
