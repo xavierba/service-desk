@@ -66,13 +66,13 @@ mkdir -p %{buildroot}/%{sd_cachedir}/templates_c
 
 # Copy files
 ## Program
-install -m 644 htdocs/*.php   %{buildroot}/%{sd_destdir}/htdocs
-cp -a          htdocs/css     %{buildroot}/%{sd_destdir}/htdocs
-cp -a          htdocs/images  %{buildroot}/%{sd_destdir}/htdocs
-cp -a          htdocs/vendor  %{buildroot}/%{sd_destdir}/htdocs
-install -m 644 lang/*         %{buildroot}/%{sd_destdir}/lang
-install -m 644 lib/*          %{buildroot}/%{sd_destdir}/lib
-install -m 644 templates/*    %{buildroot}/%{sd_destdir}/templates
+install -p -m 644 htdocs/*.php   %{buildroot}/%{sd_destdir}/htdocs
+cp -a             htdocs/css     %{buildroot}/%{sd_destdir}/htdocs
+cp -a             htdocs/images  %{buildroot}/%{sd_destdir}/htdocs
+cp -a             htdocs/vendor  %{buildroot}/%{sd_destdir}/htdocs
+install -p -m 644 lang/*         %{buildroot}/%{sd_destdir}/lang
+install -p -m 644 lib/*          %{buildroot}/%{sd_destdir}/lib
+install -p -m 644 templates/*    %{buildroot}/%{sd_destdir}/templates
 
 install -p -m 0644 %{SOURCE2} \
   %{buildroot}%{_datadir}/%{name}/vendor/autoload.php
@@ -91,11 +91,11 @@ sed -i \
 
 # Move conf file to %%_sysconfdir
 mkdir -p %{buildroot}/%{_sysconfdir}/%{name}
-install -m 644 conf/config.inc.php \
+install -p -m 644 conf/config.inc.php \
   %{buildroot}/%{_sysconfdir}/%{name}/
 ln -s %{_sysconfdir}/%{name}/config.inc.php \
   %{buildroot}%{sd_destdir}/conf/config.inc.php
-install -m 644 %{SOURCE3} \
+install -p -m 644 %{SOURCE3} \
   %{buildroot}/%{_sysconfdir}/%{name}/config.inc.local.php
 
 
