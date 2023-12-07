@@ -17,7 +17,7 @@ Name:      service-desk
 Version:   0.5.1
 Release:   1%{?dist}
 Summary:   LDAP Tool Box Service Desk web interface
-URL:       https://ltb-project.org
+URL:       https://github.com/ltb-project/service-desk
 License:   GPL-3.0-only
 
 BuildArch: noarch
